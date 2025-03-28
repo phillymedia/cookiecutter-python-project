@@ -12,11 +12,10 @@ This is a project template powered by [Cookiecutter](https://github.com/cookiecu
 ├── data
 │   ├── documentation
 │   ├── html_reports
-│   ├── manual
-│   ├── processed
-│   ├── public
-│   └── source
-├── etl
+│   ├── input
+│   ├── process
+│   ├── output
+├── scripts
 ├── publish
 └── scratch
 ```
@@ -31,14 +30,14 @@ This is a project template powered by [Cookiecutter](https://github.com/cookiecu
   - Note that only `.Rmd` linked to `.ipynb` via `Jupytext` are commited, `.ipynb` are in the `.gitignore` because `.ipynb` metadata frequently disrupts version control whenever a notebook is opened or interacted with, while `.Rmd` files only keep track of code.
 - `data`
   - This is the directory used with our `datakit-data` plugin.
-  - `data/input`
-    - Documentation on data files should go here - data dictionaries, manuals, interview notes.
-  - `data/html_reports`
-    - Contains rendered html of our analysis notebooks, the results of calling `pipenv run export_rmarkdown` on a notebook.
+  - `data/input`: contains raw, untouched data.
   - `data/process`
     - Contains data that has either been transformed from an `scripts` script or output from an `analysis` jupyter notebook.
     - Data that has been transformed from an `scripts` script will follow a naming convention: `script_{file_name}.[csv,json...]`
-  - `data/input`: contains raw, untouched data.
+  - `data/output`: Public-facing data files go here - data files which are 'live'.
+  - `data/html_reports`
+    - Contains rendered html of our analysis notebooks, the results of calling `pipenv run export_rmarkdown` on a notebook.
+
 - `scripts`
   - This is where we keep python scripts involved with collecting data and prepping it for analysis.
   - These files should be scripts, they should not be jupyter notebooks.
@@ -99,7 +98,7 @@ If you'd like to avoid specifying the template each time, you can edit `~/.datak
 
 ### Full virtual environment setup. From package management to rendering analyses.
 
-This python template should get Inquirer data journalists set up quickly with a virtual environment, allowing them to clone a project and quickly install all the packages required to run ETL and analysis files. 
+This python template should get Inquirer data journalists set up quickly with a virtual environment, allowing them to clone a project and quickly install all the packages required to run scripts and analysis files. 
 
 **Setup**
 
