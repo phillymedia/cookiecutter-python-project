@@ -1,8 +1,6 @@
 *
 !.gitignore
-!documentation
-!handmade
 !html_reports
-!processed
-!public
-!source
+!input
+!process
+!output

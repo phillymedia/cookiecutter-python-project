@@ -1,4 +1,4 @@
-# AP Python Cookiecutter
+# Philly Inquirer Python Cookiecutter
 
 This is a project template powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter) for use with [datakit-project](https://github.com/associatedpress/datakit-project/).
 
@@ -31,23 +31,17 @@ This is a project template powered by [Cookiecutter](https://github.com/cookiecu
   - Note that only `.Rmd` linked to `.ipynb` via `Jupytext` are commited, `.ipynb` are in the `.gitignore` because `.ipynb` metadata frequently disrupts version control whenever a notebook is opened or interacted with, while `.Rmd` files only keep track of code.
 - `data`
   - This is the directory used with our `datakit-data` plugin.
-  - `data/documentation`
+  - `data/input`
     - Documentation on data files should go here - data dictionaries, manuals, interview notes.
   - `data/html_reports`
     - Contains rendered html of our analysis notebooks, the results of calling `pipenv run export_rmarkdown` on a notebook.
-  - `data/manual`
-    - Contains data that has been manually altered (e.g. excel workbooks with inconsistent string errors requiring eyes on every row).
-  - `data/processed`
-    - Contains data that has either been transformed from an `etl` script or output from an `analysis` jupyter notebook.
-    - Data that has been transformed from an `etl` script will follow a naming convention: `etl_{file_name}.[csv,json...]`
-  - `data/public`
-    - Public-facing data files go here - data files which are 'live'.
-  - `data/source`: contains raw, untouched data.
-- `etl`
+  - `data/process`
+    - Contains data that has either been transformed from an `scripts` script or output from an `analysis` jupyter notebook.
+    - Data that has been transformed from an `scripts` script will follow a naming convention: `script_{file_name}.[csv,json...]`
+  - `data/input`: contains raw, untouched data.
+- `scripts`
   - This is where we keep python scripts involved with collecting data and prepping it for analysis.
   - These files should be scripts, they should not be jupyter notebooks.
-- `publish`
-  - This directory holds all the documents in the project that will be public facing (e.g. data.world documents).
 - `scratch`
   - This directory contains output that will not be used in the project in its final form.
   - Common cases are filtered tables or quick visualizations for reporters
@@ -105,7 +99,7 @@ If you'd like to avoid specifying the template each time, you can edit `~/.datak
 
 ### Full virtual environment setup. From package management to rendering analyses.
 
-This python template should get AP data journalists set up quickly with a virtual environment, allowing them to clone a project and quickly install all the packages required to run ETL and analysis files. 
+This python template should get Inquirer data journalists set up quickly with a virtual environment, allowing them to clone a project and quickly install all the packages required to run ETL and analysis files. 
 
 **Setup**
 
@@ -132,7 +126,7 @@ This python template should get AP data journalists set up quickly with a virtua
 
 - We don't git track `.ipynb` notebooks. Instead, we use [Jupytext](https://jupytext.readthedocs.io/en/latest/) to link our `.ipynb` files to git-tracked `.Rmd` files. This makes `git diff`s much more useful. `git status` shouldn't say our analysis changed because we ran a cell again. This makes sure it doesn't.
 
-- When we start an analysis notebook, we use the folder tree in Jupyter Lab to get to our analysis folder and open a new Launcher Window (`shift + command + L`). Under the "Notebook" section, we select the option called "Template". This brings up a dropdown selection menu. Select `ap_data_team` on the top dropdown, and `quarto.ipynb` on the bottom. This should bring up another option to select your ipython kernel. Select the kernel named after your project.
+- When we start an analysis notebook, we use the folder tree in Jupyter Lab to get to our analysis folder and open a new Launcher Window (`shift + command + L`). Under the "Notebook" section, we select the option called "Template". This brings up a dropdown selection menu. Select `inky` on the top dropdown, and `quarto.ipynb` on the bottom. This should bring up another option to select your ipython kernel. Select the kernel named after your project.
   - At this point, you have an analysis notebook file that is linked to an `.Rmd` with the same name. The first time you save your `.ipynb` file, you'll see that `.Rmd` appear alongside your `.ipynb` file. If you ever rename the `.ipynb`, the name of the `.Rmd` will change to match it.
   - You can still create a typical `.ipynb` analysis without the template (and without the paired `.Rmd`). Just keep in mind that without a paired `.Rmd` the analysis will not be git-tracked, unless you add an exception for the `.ipynb` file in the `.gitignore`.
 
