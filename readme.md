@@ -29,7 +29,6 @@ This is a project template powered by [Cookiecutter](https://github.com/cookiecu
   - `analysis/archive`: Notebooks that leave the scope of the project but should also remain in the project history will be placed here.
   - Note that only `.Rmd` linked to `.ipynb` via `Jupytext` are commited, `.ipynb` are in the `.gitignore` because `.ipynb` metadata frequently disrupts version control whenever a notebook is opened or interacted with, while `.Rmd` files only keep track of code.
 - `data`
-  - This is the directory used with our `datakit-data` plugin.
   - `data/input`: contains raw, untouched data.
   - `data/process`
     - Contains data that has either been transformed from an `scripts` script or output from an `analysis` jupyter notebook.
@@ -62,12 +61,10 @@ analysis/archive/*.ipynb
 !analysis/notebook_templates/*.ipynb
 
 data/
-!data/source/.gitkeep
-!data/manual/.gitkeep
+!data/input/.gitkeep
 !data/processed/.gitkeep
+!data/output/.gitkeep
 !data/html_reports/.gitkeep
-!data/public/.gitkeep
-!data/documentation/.gitkeep
 
 scratch/
 !scratch/.gitkeep
@@ -138,11 +135,6 @@ This python template should get Inquirer data journalists set up quickly with a 
 - When you're in the directory where you keep your analysis projects, clone the python project: `git clone git@some.git.domain:path/to/git_project.git`
 - `cd` into the project and run `python .first_install.py`
   - This step will create the projects virtual environment, install all necessary packages included in the `Pipfile` using the major python version defined in the `Pipfile`, and use the `.Rmd` files in the project to generate `.ipynb` files to work with. 
-
-
-**Legacy rmarkdown rendering**
-
-Before we started using Quarto, this template generated R-style html reports via rmarkdown. We did this because rmarkdown generated better tables and more beautiful reports. To achieve it, we would actually pass the Jupytext-paired `.Rmd` file to rmarkdown via an Rscript. This required writing R cells in our analyses to get R style tables. For Altair charts, we'd have to pass the chart json to an R library that knew how to deal with vega charts. These cells wouldn't run until we rendered the report. This is the main reason for switching to Quarto, which allows us to have notebook output that matches what we'll see in the rendered report, and the result is just as beautiful. However, there may come a time, when we find rendering an `.Rmd` via rmarkdown useful. For that reason, we are keeping the rmarkdown rendering script. Keep in mind that to make use of it, you'll need to start an analysis with the Jupyter notebook template `rmarkdown.ipynb`. Then you can render an analysis using that template with `pipenv run export_rmarkdown path/to/analysis.Rmd`.
 
 ## Configuration
 
